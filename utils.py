@@ -16,7 +16,22 @@ def import_attrition_data():
 
     df = pd.concat(df_li, axis=0, ignore_index=True)
 
+    # Cleaning
+
     df = df.drop_duplicates()
+
+    #AT15 & AT16
+
+    df.loc[df["gender"] == "F", "gender"] = "Female"
+    df.loc[df["gender"] == "female", "gender"] = "Female"
+
+    df.loc[df["gender"] == "M", "gender"] = "Male"
+    df.loc[df["gender"] == "male", "gender"] = "Male"
+
+
+    df = df.drop("num_kids", axis=1)
+
+    df = df.drop("customer_id", axis=1)
 
     return df
 
