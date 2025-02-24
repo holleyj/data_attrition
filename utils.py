@@ -33,5 +33,10 @@ def import_attrition_data():
 
     df = df.drop("customer_id", axis=1)
 
+        
+    df["credit_card"] = df["credit_card"].fillna(0)
+
+    df["credit_card"] = df["credit_card"].astype(int)
+
     return df
 
